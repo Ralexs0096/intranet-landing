@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from "react";
+import {fetchFunctional} from '../../api/api';
 
 import dataContext from "./dataContext";
 import dataReducer from "./dataReducer";
@@ -19,9 +20,7 @@ const DataState = (props) => {
   const obtenerDataPbx = async () => {
     try {
         if(pbxInput.length > 0){
-            const resultado = await fetch(
-                `http://localhost:5000/api/users/pbxfilter?name=${pbxInput}`
-              );
+            const resultado = await fetchFunctional(`http://localhost:5000/api/users/pbxfilter?name=${pbxInput}`, 'GET')
               const data = await resultado.json();
               dispatch({
                 type: "FILTRAR_PBX",
